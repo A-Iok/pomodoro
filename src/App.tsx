@@ -23,6 +23,7 @@ const Timer: React.FC = () => {
       // タイマーが非アクティブな場合、開始する
       //入力した数字を取得
       console.log(inputSecond);
+      console.log(inputMinute);
       setSeconds(inputSecond);
       setStartSecond(inputSecond);
 
@@ -59,9 +60,14 @@ const Timer: React.FC = () => {
     return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
   };
 
-  const updateSecond = (event): void => {
+  const updateSecond = (event: any): void => {
     console.log('updateSecond');
     setInputSecond(event.target.value);
+  };
+
+  const updateMinute = (event: any): void => {
+    console.log('updateMinute');
+    setInputMinute(event.target.value);
   };
 
   // const updateSecond = (second: number) => {
@@ -78,7 +84,7 @@ const Timer: React.FC = () => {
       <button onClick={handleStartStop}>{isActive ? '停止' : '開始'}</button>
       <button onClick={handleReset} disabled={isActive}>リセット</button>
       <div>設定
-        <input value={inputMinute} type='number' pattern="^[0-9]+$" onChange={updateSecond}></input>分
+        <input type='number' pattern="^[0-9]+$" onChange={updateMinute}></input>分
         <input type='number' pattern="^[0-9]+$" onChange={updateSecond}></input>秒
       </div>
     </div>
