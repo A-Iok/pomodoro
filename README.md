@@ -34,6 +34,11 @@ export default {
 npm run dev
 
 ## ブランチ
-main：ローカル起動が可能なブランチ。開発もこちらで行う
-release/gh-pages:githubPagesで公開する用の設定が入ったブランチ
-release/aws：awsで公開する用の設定が入ったブランチ
+- main：ローカル起動が可能なブランチ。開発もこちらで行う
+- release/gh-pages:githubPagesで公開する用の設定が入ったブランチ
+- release/aws：awsで公開する用の設定が入ったブランチ
+
+## コミット方法
+- git add .
+- git commit -m "メッセージ"
+- git push -u origin main
