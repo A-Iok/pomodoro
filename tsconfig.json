@@ -9,6 +9,10 @@
     }
   ],
   "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "allowJs": true,
+    "jsx": "react-jsx",
     "noUnusedParameters": false
   }
 }
