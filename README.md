@@ -30,7 +30,7 @@ export default {
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
 
 
-## 起動方法
+## ローカル動作確認方法
 npm run dev
 
 ## ブランチ
