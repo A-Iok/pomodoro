@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const Timer: React.FC = () => {
-  const [seconds, setSeconds] = useState(120);
+  const [seconds, setSeconds] = useState(120);// タイマーに使用する秒
   const [isActive, setIsActive] = useState(false);
   const [isAfterReset, setIsAfterReset] = useState(true);
   const [intervalId, setIntervalId] = useState<NodeJS.Timer | number | null>(null); // 型を `NodeJS.Timer | number | null` に設定
@@ -33,8 +33,7 @@ const Timer: React.FC = () => {
   const handleStart = () => {
     console.log(inputSecond);
     console.log(inputMinute);
-    setSeconds(inputSecond);
-    setStartSecond(inputSecond);
+    setStartSecond(seconds);
 
     start(setSeconds, setIsActive, setIntervalId);
 
@@ -57,21 +56,30 @@ const Timer: React.FC = () => {
 
   // 時間表示を行う
   const formatTime = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+    const displayMinutes = Math.floor(seconds / 60);
+    const displaySeconds = seconds % 60;
+    return `${displayMinutes}:${displaySeconds < 10 ? '0' : ''}${displaySeconds}`;
   };
 
   // 入力した秒を反映する
   const updateSecond = (event: any): void => {
-    console.log('updateSecond');
     setInputSecond(event.target.value);
+    console.log('updateSecond,inputSecond:' + inputSecond);
   };
 
   // 入力した分を反映する
   const updateMinute = (event: any): void => {
-    console.log('updateMinute');
     setInputMinute(event.target.value);
+    console.log('updateMinute,inputMinute:' + inputMinute);
+  };
+
+  // 入力した分秒をタイマーに反映する
+  const updateTimer = (event: any): void => {
+    console.log('updateTimer');
+    const result = inputMinute * 60 + inputSecond;//TODO 文字列計算される（1:44を入れると6044=100分44秒にされる）
+    setSeconds(result);
+    console.log("seconds:" + seconds);
+    setIsAfterReset(true);
   };
 
   return (
@@ -86,6 +94,7 @@ const Timer: React.FC = () => {
       <div>設定
         <input type='number' pattern="^[0-9]+$" onChange={updateMinute}></input>分
         <input type='number' pattern="^[0-9]+$" onChange={updateSecond}></input>秒
+        <button onClick={updateTimer} disabled={isActive}>入力内容をタイマーに反映する</button>
       </div>
     </div>
   );
